@@ -1,4 +1,4 @@
-package com.alpergayretoglu.movie_provider.entity;
+package com.alpergayretoglu.movie_provider.entity.enums;
 
 public enum UserRole {
     GUEST,
