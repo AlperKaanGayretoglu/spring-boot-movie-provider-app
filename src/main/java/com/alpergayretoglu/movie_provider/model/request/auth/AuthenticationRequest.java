@@ -17,7 +17,7 @@ public class AuthenticationRequest {
     private String username;
 
     @NotBlank
-    @Size(min = 8, max = 32) // TODO: Unnecessary? (since there won't be any registered passwords outside this range)
+    @Size(min = 6, max = 32) // TODO: Unnecessary? (since there won't be any registered passwords outside this range)
     private String password;
 
 }

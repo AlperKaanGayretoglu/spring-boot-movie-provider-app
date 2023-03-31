@@ -23,11 +23,12 @@ public class FilterChainConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/register").permitAll()
+                .requestMatchers("/api/v1/auth/login").permitAll()
+                .requestMatchers("/api/v1/auth/register").permitAll()
                 .requestMatchers("/swagger-ui/index.html").permitAll()  // OpenAPI
                 .requestMatchers("/v3/api-docs").permitAll()            // OpenAPI
-                .anyRequest().permitAll() //.authenticated()
+                .anyRequest().authenticated()
+                // .anyRequest().permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

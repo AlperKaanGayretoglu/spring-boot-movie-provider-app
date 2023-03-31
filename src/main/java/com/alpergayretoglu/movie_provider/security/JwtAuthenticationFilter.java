@@ -24,9 +24,18 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
     private final JwtService jwtService;
     private final UserRepository userRepository;
+
+    public Authentication claimsToAuthentication(Jws<Claims> jws) {
+        if (jws == null)
+            return null;
+        String email = jws.getBody().getSubject(); // email
+        User user = userRepository.findByEmail(email).orElseThrow(() -> {
+            throw new UsernameNotFoundException(email); // even though jwt is valid, email does not exist
+        });
+        return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+    }
 
     @Override
     protected void doFilterInternal(
@@ -38,20 +47,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         Jws<Claims> jws = jwtService.verifyAuthHeader(authorizationHeader);
         Authentication authentication = claimsToAuthentication(jws);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         filterChain.doFilter(request, response);
-    }
-
-    private Authentication claimsToAuthentication(Jws<Claims> jws) {
-        if (jws == null) {
-            return null;
-        }
-
-        String email = jws.getBody().getSubject(); // email
-        User user = userRepository.findByEmail(email).orElseThrow(() -> {
-            throw new UsernameNotFoundException(email); // even though jwt is valid, email does not exist
-        });
-
-        return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     }
 }

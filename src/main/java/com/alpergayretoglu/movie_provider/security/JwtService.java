@@ -17,7 +17,7 @@ import java.util.Date;
 public class JwtService {
 
     private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5275";
-    private static final String TOKEN_ISSUER = "Movie Provider App";
+    private static final String TOKEN_ISSUER = "MovieProvider";
     private static final int EXPIRE_HOURS = 10; // token expires in 10 hours
 
     public Key getSigningKey() {
