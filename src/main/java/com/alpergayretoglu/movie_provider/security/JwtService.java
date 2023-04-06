@@ -6,19 +6,23 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 
 @Service
-@Slf4j
 public class JwtService {
 
-    private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5275";
-    private static final String TOKEN_ISSUER = "MovieProvider";
-    private static final int EXPIRE_HOURS = 10; // token expires in 10 hours
+    private final String SECRET_KEY;
+    private final String TOKEN_ISSUER;
+    private final int EXPIRE_HOURS; // token expires in given hours
+
+    public JwtService(SecurityConstants securityConstants) {
+        SECRET_KEY = securityConstants.getJWT_SECRET_KEY();
+        TOKEN_ISSUER = securityConstants.getJWT_TOKEN_ISSUER();
+        EXPIRE_HOURS = securityConstants.getJWT_EXPIRATION_HOURS();
+    }
 
     public Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
@@ -32,7 +36,7 @@ public class JwtService {
                 .setIssuer(TOKEN_ISSUER)
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * EXPIRE_HOURS))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * EXPIRE_HOURS))
                 .compact();
     }
 
