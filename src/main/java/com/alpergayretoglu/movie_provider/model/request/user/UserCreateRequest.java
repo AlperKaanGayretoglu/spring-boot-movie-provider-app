@@ -30,7 +30,7 @@ public class UserCreateRequest {
     @NotBlank
     private UserRole role;
 
-    public static User to(UserCreateRequest request) {
+    public static User toEntity(UserCreateRequest request) {
         return User.builder()
                 .name(request.getName())
                 .surname(request.getSurname())
