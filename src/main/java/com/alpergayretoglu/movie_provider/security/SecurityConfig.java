@@ -1,6 +1,6 @@
 package com.alpergayretoglu.movie_provider.security;
 
-import com.alpergayretoglu.movie_provider.entity.User;
+import com.alpergayretoglu.movie_provider.model.entity.User;
 import com.alpergayretoglu.movie_provider.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

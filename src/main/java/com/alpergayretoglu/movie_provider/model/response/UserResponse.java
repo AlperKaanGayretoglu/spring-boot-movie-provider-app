@@ -1,9 +1,9 @@
 package com.alpergayretoglu.movie_provider.model.response;
 
-import com.alpergayretoglu.movie_provider.entity.Category;
-import com.alpergayretoglu.movie_provider.entity.Movie;
-import com.alpergayretoglu.movie_provider.entity.User;
-import com.alpergayretoglu.movie_provider.entity.enums.UserRole;
+import com.alpergayretoglu.movie_provider.model.entity.Category;
+import com.alpergayretoglu.movie_provider.model.entity.Movie;
+import com.alpergayretoglu.movie_provider.model.entity.User;
+import com.alpergayretoglu.movie_provider.model.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

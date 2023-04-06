@@ -1,6 +1,6 @@
-package com.alpergayretoglu.movie_provider.entity;
+package com.alpergayretoglu.movie_provider.model.entity;
 
-import com.alpergayretoglu.movie_provider.entity.enums.UserRole;
+import com.alpergayretoglu.movie_provider.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

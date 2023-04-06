@@ -1,7 +1,7 @@
 package com.alpergayretoglu.movie_provider.service;
 
-import com.alpergayretoglu.movie_provider.entity.User;
-import com.alpergayretoglu.movie_provider.entity.enums.UserRole;
+import com.alpergayretoglu.movie_provider.model.entity.User;
+import com.alpergayretoglu.movie_provider.model.enums.UserRole;
 import com.alpergayretoglu.movie_provider.model.request.auth.AuthenticationRequest;
 import com.alpergayretoglu.movie_provider.model.request.auth.RegisterRequest;
 import com.alpergayretoglu.movie_provider.model.response.AuthenticationResponse;

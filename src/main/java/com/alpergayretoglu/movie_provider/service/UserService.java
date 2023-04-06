@@ -1,6 +1,6 @@
 package com.alpergayretoglu.movie_provider.service;
 
-import com.alpergayretoglu.movie_provider.entity.User;
+import com.alpergayretoglu.movie_provider.model.entity.User;
 import com.alpergayretoglu.movie_provider.model.request.user.UserCreateRequest;
 import com.alpergayretoglu.movie_provider.model.request.user.UserUpdateRequest;
 import com.alpergayretoglu.movie_provider.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.alpergayretoglu.movie_provider.entity;
+package com.alpergayretoglu.movie_provider.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
