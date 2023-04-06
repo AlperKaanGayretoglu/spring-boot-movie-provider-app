@@ -20,22 +20,22 @@ public class UserController {
 
     @GetMapping
     public List<UserResponse> getUsers() {
-        return userService.getUsers().stream().map(UserResponse::from).toList();
+        return userService.getUsers().stream().map(UserResponse::fromEntity).toList();
     }
 
     @GetMapping("{userId}")
     public UserResponse getUser(@PathVariable String userId) {
-        return UserResponse.from(userService.getUser(userId));
+        return UserResponse.fromEntity(userService.getUser(userId));
     }
 
     @PostMapping
     public UserResponse addUser(@Valid @RequestBody UserCreateRequest request) {
-        return UserResponse.from(userService.addUser(request));
+        return UserResponse.fromEntity(userService.addUser(request));
     }
 
     @PutMapping("{userId}")
     public UserResponse updateUser(@PathVariable String userId, @Valid @RequestBody UserUpdateRequest request) {
-        return UserResponse.from(userService.updateUser(userId, request));
+        return UserResponse.fromEntity(userService.updateUser(userId, request));
     }
 
     @DeleteMapping("{userId}")

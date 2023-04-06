@@ -27,7 +27,7 @@ public class UserResponse {
     private List<String> followedCategories;
     private List<String> favoriteMovies;
 
-    public static UserResponse from(User user) {
+    public static UserResponse fromEntity(User user) {
         return UserResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
