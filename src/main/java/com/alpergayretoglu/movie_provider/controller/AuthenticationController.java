@@ -1,5 +1,6 @@
 package com.alpergayretoglu.movie_provider.controller;
 
+import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
 import com.alpergayretoglu.movie_provider.model.request.auth.AuthenticationRequest;
 import com.alpergayretoglu.movie_provider.model.request.auth.RegisterRequest;
 import com.alpergayretoglu.movie_provider.model.response.AuthenticationResponse;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/auth")
+@RequestMapping(ApplicationConstants.MAIN_PATH + "/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;

@@ -1,5 +1,6 @@
 package com.alpergayretoglu.movie_provider.model.request.auth;
 
+import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,7 +18,8 @@ public class AuthenticationRequest {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 32) // TODO: Unnecessary? (since there won't be any registered passwords outside this range)
+    @Size(min = ApplicationConstants.PASSWORD_MIN_LENGTH, max = ApplicationConstants.PASSWORD_MAX_LENGTH)
+    // TODO: Unnecessary? (since there won't be any registered passwords outside this range)
     private String password;
 
 }
