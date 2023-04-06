@@ -27,7 +27,7 @@ public class ContractRecord {
     private boolean isActive;
 
     // TODO: Do we need to specify with which table ???
-    @ManyToOne
+    @OneToOne
     private User user; // TODO: ER says "String user_id" but idk ???
 
     private ZonedDateTime createdDate;

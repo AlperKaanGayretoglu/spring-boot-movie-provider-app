@@ -11,15 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.ZonedDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
-
 })
 @Data
 @AllArgsConstructor
@@ -49,30 +45,46 @@ public class User implements UserDetails {
     @Builder.Default
     private boolean verified = false;
 
-    private String verificationCode;
-    private ZonedDateTime verificationCodeExpiredDate;
+    @Builder.Default
+    private String verificationCode = UUID.randomUUID().toString();
+
+    @Builder.Default
+    private ZonedDateTime verificationCodeExpireDate = ZonedDateTime.now().plusDays(1); // TODO: fixed value?
 
     private String recoveryCode;
+
     private ZonedDateTime recoveryCodeExpiredDate;
 
 
-    // TODO: Do we need to specify with which table ???
-    @OneToMany
-    private Set<ContractRecord> subscription = new HashSet<>();
-
-    // TODO: Do we need to specify with which table ???
     @ManyToMany
-    private Set<Category> followedCategories = new HashSet<>();
-
-    // TODO: Do we need to specify with which table ???
-    @ManyToMany
+    @JoinTable(name = "users_movies",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    @Builder.Default
     private Set<Movie> favoriteMovies = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "users_categories",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    @Builder.Default
+    private List<Category> followedCategories = new LinkedList<>();
 
-    // security layer
+    @OneToOne(mappedBy = "user")
+    private ContractRecord contractRecord;
+
+
+    // security layer:
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

@@ -25,6 +25,7 @@ public class Movie {
 
     @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("movies")
+    @Builder.Default
     private Set<Category> categories = new HashSet<>();
 
     // TODO: More attributes needed about movie (example: movie_length, starring...)

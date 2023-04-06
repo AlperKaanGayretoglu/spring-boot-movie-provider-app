@@ -24,7 +24,7 @@ public class Category {
     private String name;
 
     // TODO: Do we need to specify with which table ???
-    @ManyToOne // TODO: Is this ManyToOne OR OneToOne ???
+    @OneToOne // TODO: Is this ManyToOne OR OneToOne ???
     private Category parent;
 
     // TODO: Do we need to specify with which table ???
@@ -37,6 +37,7 @@ public class Category {
     @ManyToMany(fetch = FetchType.LAZY)
     // @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY) // TODO: Is this correct ???
     @JsonIgnoreProperties("categories") // TODO: Is this necessary ???
+    @Builder.Default
     private Set<Movie> movies = new HashSet<>();
 
     private boolean isSuperCategory;

@@ -8,18 +8,20 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class Invoice {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private int fee;
+    private int amount;
 
-    // TODO: Do we need to specify with which table ???
+    private String senderCard;
+
+    private String receiverCard;
+
     @ManyToOne
-    private ContractRecord contractRecord; // TODO: ER says "String contract_record_id" but idk ???
-
+    private Invoice invoice;
 }
