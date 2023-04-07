@@ -23,3 +23,7 @@ jwt:
   issuer: ${JWT_ISSUER}
   expiration:
     hours: ${JWT_EXPIRATION_HOURS}
+
+server:
+  servlet:
+    context-path: /api/v1
