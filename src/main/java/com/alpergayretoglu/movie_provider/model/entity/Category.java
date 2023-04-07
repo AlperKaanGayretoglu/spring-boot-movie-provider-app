@@ -29,8 +29,8 @@ public class Category {
 
     // TODO: Do we need to specify with which table ???
     /*
-    @JoinTable(name = "categories_movies", // TODO: Change the name to -> movie_categories ?
-            joinColumns = @JoinColumn(name = "category_id"),
+    @JoinTable(name = "category_movies", // TODO: Change the name to -> movie_categories ?
+            joinColumns = @JoinColumn(name = "categories_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id")
     )
     */

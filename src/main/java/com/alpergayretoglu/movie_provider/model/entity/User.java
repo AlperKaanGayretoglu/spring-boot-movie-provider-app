@@ -67,7 +67,7 @@ public class User implements UserDetails {
     @ManyToMany
     @JoinTable(name = "users_categories",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            inverseJoinColumns = @JoinColumn(name = "categories_id")
     )
     @Builder.Default
     private List<Category> followedCategories = new LinkedList<>();
