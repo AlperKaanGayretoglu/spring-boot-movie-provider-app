@@ -1,6 +1,5 @@
 package com.alpergayretoglu.movie_provider.controller;
 
-import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
 import com.alpergayretoglu.movie_provider.model.request.user.UserCreateRequest;
 import com.alpergayretoglu.movie_provider.model.request.user.UserUpdateRequest;
 import com.alpergayretoglu.movie_provider.model.response.UserResponse;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(ApplicationConstants.MAIN_PATH + "/users")
+@RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
 
@@ -42,4 +41,18 @@ public class UserController {
     public void deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
     }
+
+    @PostMapping("{userId}/subscribe/{subscriptionId}")
+    public void subscribe(@PathVariable String userId, @PathVariable String subscriptionId) {
+        userService.subscribe(userId, subscriptionId);
+    }
+
+
+    // ADMIN or SELF authorization testing route, TODO: SELF DOESN'T WORK!!! (problem with SelfFilter!!!)
+    /*
+    @GetMapping("/admin-or-self-test/{userId}")
+    public String adminOrSelfResource(@PathVariable String userId) {
+        return "You have reached protected resource.";
+    }
+     */
 }
