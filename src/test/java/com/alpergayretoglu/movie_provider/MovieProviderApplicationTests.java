@@ -3,11 +3,12 @@ package com.alpergayretoglu.movie_provider;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MovieProviderApplicationTests {
 
     @Test
     void contextLoads() {
+        
     }
 
 }
