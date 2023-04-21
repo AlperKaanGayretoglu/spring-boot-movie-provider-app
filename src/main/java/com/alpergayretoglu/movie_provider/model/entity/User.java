@@ -2,10 +2,7 @@ package com.alpergayretoglu.movie_provider.model.entity;
 
 import com.alpergayretoglu.movie_provider.model.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +14,11 @@ import java.util.*;
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
-@Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -39,7 +37,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    @Column(nullable = false)
     private UserRole role = UserRole.GUEST;
 
     @Builder.Default
