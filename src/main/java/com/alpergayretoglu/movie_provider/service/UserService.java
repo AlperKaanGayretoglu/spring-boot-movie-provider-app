@@ -35,7 +35,7 @@ public class UserService {
                 .surname(request.getSurname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(UserRole.GUEST) // default
                 .build()
         );
     }
@@ -55,7 +55,6 @@ public class UserService {
         oldUser.setSurname(request.getSurname());
         oldUser.setEmail(request.getEmail());
         oldUser.setPassword(request.getPassword());
-        oldUser.setRole(request.getRole());
 
         return userRepository.save(oldUser);
     }
