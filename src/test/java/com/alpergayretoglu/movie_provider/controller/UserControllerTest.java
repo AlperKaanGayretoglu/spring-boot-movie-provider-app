@@ -1,41 +1,51 @@
 package com.alpergayretoglu.movie_provider.controller;
 
-import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
-import com.alpergayretoglu.movie_provider.model.response.UserResponse;
+
+import com.alpergayretoglu.movie_provider.model.entity.User;
+import com.alpergayretoglu.movie_provider.model.enums.UserRole;
+import com.alpergayretoglu.movie_provider.repository.UserRepository;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class UserControllerTest {
 
     @Autowired
-    private UserController userController;
+    private UserRepository userRepository;
 
     @Autowired
-    private TestRestTemplate testRestTemplate;
+    private MockMvc mockMvc;
 
+    // given/when/then format - BDD style
     @Test
-    public void getUsersTest() {
-        ResponseEntity<List<UserResponse>> response = testRestTemplate.exchange( // TODO: solve the error -> URI is not absolute
-                ApplicationConstants.MAIN_PATH + "/users",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<>() {
-                }
-        );
+    public void givenUsers_whenGetAllUsers_thenListOfUsers() throws Exception {
+        // given - setup or precondition
+        List<User> users =
+                List.of(User.builder()
+                        .name("Adam")
+                        .surname("Smith")
+                        .email("adam_smith@mail.com")
+                        .password("123456")
+                        .role(UserRole.GUEST)
+                        .build());
+        userRepository.saveAll(users);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        // when - action
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/api/v1/users"));
 
-        assertThat(response.getBody()).isEqualTo(userController.getUsers());
+        // then - verify the output
+        response.andExpect(MockMvcResultMatchers.status().isOk());
+        response.andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(users.size())));
     }
 }
+
