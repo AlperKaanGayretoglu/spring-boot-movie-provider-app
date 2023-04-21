@@ -3,6 +3,9 @@ INSERT INTO users (id, email, name, surname, password, role, verified)
 VALUES ('5b8a3d25-2b7a-4683-89ed-ac0e42cdc879', 'alperkaangayretoglu@gmail.com', 'Alper', 'Gayretoğlu',
         '$2a$10$OU9/JC80FudcjfuAj1.X5OopuhG6Trs3JHQEOHdH.Xnm7VSIpW0OC', 'ADMIN', true);
 
+INSERT INTO users (id, email, name, surname, password, role, verified)
+VALUES ('6b8a3d25-2b7a-4683-89ed-ac0e42cdc878', 'guest@mail.com', 'Guest', 'Guest',
+        '$2a$10$OU9/JC80FudcjfuAj1.X5OopuhG6Trs3JHQEOHdH.Xnm7VSIpW0OC', 'GUEST', true);
 
 -- Subscription Data
 INSERT INTO subscription (id, duration, is_active, monthly_fee, name)
