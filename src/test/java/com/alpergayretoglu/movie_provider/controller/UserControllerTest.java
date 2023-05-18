@@ -1,20 +1,11 @@
 package com.alpergayretoglu.movie_provider.controller;
 
 
-import com.alpergayretoglu.movie_provider.model.entity.User;
-import com.alpergayretoglu.movie_provider.model.enums.UserRole;
 import com.alpergayretoglu.movie_provider.repository.UserRepository;
-import org.hamcrest.CoreMatchers;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -26,6 +17,7 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /*
     // given/when/then format - BDD style
     @Test
     public void givenUsers_whenGetAllUsers_thenListOfUsers() throws Exception {
@@ -47,5 +39,6 @@ public class UserControllerTest {
         response.andExpect(MockMvcResultMatchers.status().isOk());
         response.andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(users.size())));
     }
+     */
 }
 

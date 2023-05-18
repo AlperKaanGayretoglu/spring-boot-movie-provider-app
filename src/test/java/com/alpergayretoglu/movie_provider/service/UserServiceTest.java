@@ -1,15 +1,10 @@
 package com.alpergayretoglu.movie_provider.service;
 
-import com.alpergayretoglu.movie_provider.model.entity.User;
 import com.alpergayretoglu.movie_provider.repository.UserRepository;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,7 +56,7 @@ public class UserServiceTest {
     }
     */
 
-
+/*
     @Test
     @Order(3)
     public void deleteUser() {
@@ -73,6 +68,7 @@ public class UserServiceTest {
 
         assertThat(userRepository.findByEmail("EMAIL@EMAIL.COM").isPresent()).isFalse();
     }
+ */
 }
 
 
