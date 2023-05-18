@@ -23,7 +23,3 @@ jwt:
   issuer: ${JWT_ISSUER:MovieProvider}
   expiration:
     hours: ${JWT_EXPIRATION_HOURS:10}
-
-server:
-  servlet:
-    context-path: /api/v1

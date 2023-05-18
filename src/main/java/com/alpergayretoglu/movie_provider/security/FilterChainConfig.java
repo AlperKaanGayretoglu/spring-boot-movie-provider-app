@@ -1,6 +1,5 @@
 package com.alpergayretoglu.movie_provider.security;
 
-import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +23,8 @@ public class FilterChainConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(ApplicationConstants.MAIN_PATH + "/auth/login").permitAll()
-                .requestMatchers(ApplicationConstants.MAIN_PATH + "/auth/register").permitAll()
+                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/register").permitAll()
                 .requestMatchers("/swagger-ui/index.html").permitAll()  // OpenAPI
                 .requestMatchers("/v3/api-docs").permitAll()            // OpenAPI
                 // .anyRequest().authenticated()

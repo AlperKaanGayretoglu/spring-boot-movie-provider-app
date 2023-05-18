@@ -1,6 +1,5 @@
 package com.alpergayretoglu.movie_provider.controller;
 
-import com.alpergayretoglu.movie_provider.constants.ApplicationConstants;
 import com.alpergayretoglu.movie_provider.model.request.auth.AuthenticationRequest;
 import com.alpergayretoglu.movie_provider.model.request.auth.RegisterRequest;
 import com.alpergayretoglu.movie_provider.model.response.AuthenticationResponse;
@@ -35,7 +34,7 @@ public class AuthenticationController {
     // TODO email service is later, for now it just sends HTTP response
     public String sendVerificationCodeToEmail(@RequestParam String email) {
         String code = authenticationService.sendVerificationCodeToEmail(email);
-        return "Your verification link is http://localhost:8080" + ApplicationConstants.MAIN_PATH + "/verify?code=" + code;
+        return "Your verification link is http://localhost:8080/verify?code=" + code;
     }
 
 
@@ -50,7 +49,7 @@ public class AuthenticationController {
     // TODO email service is later, for now it just sends HTTP response
     public String sendRecoveryCodeToEmail(@PathVariable String userId) {
         String code = authenticationService.createRecoveryCode(userId);
-        return "Your password recovery link is http://localhost:8080" + ApplicationConstants.MAIN_PATH + "/recover?code=" + code;
+        return "Your password recovery link is http://localhost:8080/recover?code=" + code;
     }
 
 }

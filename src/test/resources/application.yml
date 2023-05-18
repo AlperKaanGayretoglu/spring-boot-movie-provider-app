@@ -28,7 +28,4 @@ jwt:
   expiration:
     hours: 12
 
-server:
-  servlet:
-    context-path: /api/v1
 
