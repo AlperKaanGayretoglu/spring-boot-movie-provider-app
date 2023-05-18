@@ -6,21 +6,31 @@ import com.alpergayretoglu.movie_provider.model.response.UserResponse;
 import com.alpergayretoglu.movie_provider.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
 
     private UserService userService;
 
+    /* without Pagination
     @GetMapping
     public List<UserResponse> getUsers() {
         return userService.getUsers().stream().map(UserResponse::fromEntity).toList();
     }
+     */
+    @GetMapping
+    @ApiPageable
+    public Page<UserResponse> listUsers(@ApiIgnore Pageable pageable) {
+        return userService.getUsers(pageable).map(UserResponse::fromEntity);
+    }
+
 
     @GetMapping("{userId}")
     public UserResponse getUser(@PathVariable String userId) {

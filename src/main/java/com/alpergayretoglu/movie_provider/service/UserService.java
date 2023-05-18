@@ -8,6 +8,8 @@ import com.alpergayretoglu.movie_provider.model.request.user.UserCreateRequest;
 import com.alpergayretoglu.movie_provider.model.request.user.UserUpdateRequest;
 import com.alpergayretoglu.movie_provider.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,16 @@ public class UserService {
     private final ContractRecordService contractRecordService;
     private final PasswordEncoder passwordEncoder;
 
+    /* without Pagination
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+     */
+
+    public Page<User> getUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
     public User addUser(UserCreateRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists"); // TODO make specific exception
@@ -40,9 +52,6 @@ public class UserService {
         );
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
-    }
 
     public User getUser(String id) {
         return getUserWithException(id);
